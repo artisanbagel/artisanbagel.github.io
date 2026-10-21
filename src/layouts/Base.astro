@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Personal site and small projects.' } = Astro.props;
+const path = Astro.url.pathname;
+const current = (href: string) =>
+  (href === '/' ? path === '/' : path.startsWith(href)) ? 'page' : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <nav>
+          <a class="home" href="/">Daulet Tuleubayev</a>
+          <a href="/projects/" aria-current={current('/projects/')}>Projects</a>
+          <a href="/about/" aria-current={current('/about/')}>About</a>
+        </nav>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer>
+        <a href="https://github.com/artisanbagel">GitHub</a>
+      </footer>
+    </div>
+  </body>
+</html>
