@@ -6,7 +6,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Personal site and small projects.' } = Astro.props;
+const { title, description = 'SITE DESCRIPTION' } = Astro.props;
 const path = Astro.url.pathname;
 const current = (href: string) =>
   (href === '/' ? path === '/' : path.startsWith(href)) ? 'page' : undefined;
@@ -29,6 +29,7 @@ const current = (href: string) =>
         <nav>
           <a class="home" href="/">Daulet Tuleubayev</a>
           <a href="/projects/" aria-current={current('/projects/')}>Projects</a>
+          <a href="/games/" aria-current={current('/games/')}>Games</a>
           <a href="/about/" aria-current={current('/about/')}>About</a>
         </nav>
       </header>

@@ -1,19 +1,39 @@
+/* Solarized */
 :root {
-  --bg: #fcfcfa;
-  --fg: #1c1c1a;
-  --muted: #6b6b66;
-  --rule: #e4e4df;
-  --accent: #1f5fbf;
+  --base03: #002b36;
+  --base02: #073642;
+  --base01: #586e75;
+  --base00: #657b83;
+  --base0: #839496;
+  --base1: #93a1a1;
+  --base2: #eee8d5;
+  --base3: #fdf6e3;
+  --yellow: #b58900;
+  --orange: #cb4b16;
+  --red: #dc322f;
+  --magenta: #d33682;
+  --violet: #6c71c4;
+  --blue: #268bd2;
+  --cyan: #2aa198;
+  --green: #859900;
+
+  --bg: var(--base3);
+  --bg-alt: var(--base2);
+  --fg: var(--base01);
+  --muted: var(--base00);
+  --rule: var(--base2);
+  --accent: var(--blue);
   --max: 42rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #141413;
-    --fg: #ecece8;
-    --muted: #9a9a93;
-    --rule: #2a2a28;
-    --accent: #7fa8ea;
+    --bg: var(--base03);
+    --bg-alt: var(--base02);
+    --fg: var(--base1);
+    --muted: var(--base0);
+    --rule: var(--base02);
+    --accent: var(--blue);
   }
 }
 
@@ -49,20 +69,29 @@ header nav {
 header nav .home { font-weight: 600; color: var(--fg); margin-right: auto; }
 header nav a[aria-current="page"] { color: var(--fg); }
 
+.subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+.subnav a[aria-current="page"] { color: var(--fg); font-weight: 600; }
+
 h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 1rem; }
 h2 { font-size: 1.25rem; margin: 2rem 0 0.75rem; }
 p { margin: 0 0 1rem; }
 .muted { color: var(--muted); }
 
-.projects { list-style: none; padding: 0; margin: 0; }
-.projects li {
+.list { list-style: none; padding: 0; margin: 0; }
+.list li {
   padding: 1rem 0;
   border-bottom: 1px solid var(--rule);
 }
-.projects li:first-child { border-top: 1px solid var(--rule); }
-.projects .title { font-weight: 600; }
-.projects time { float: right; font-size: 0.9rem; color: var(--muted); }
-.projects p { margin: 0.25rem 0 0; }
+.list li:first-child { border-top: 1px solid var(--rule); }
+.list .title { font-weight: 600; }
+.list time { float: right; font-size: 0.9rem; color: var(--muted); }
+.list p { margin: 0.25rem 0 0; }
 
 .links { display: flex; gap: 1rem; font-size: 0.95rem; }
 
@@ -75,5 +104,5 @@ footer {
 }
 
 article img { max-width: 100%; height: auto; }
-article pre { padding: 1rem; overflow-x: auto; border-radius: 6px; }
+article pre { background: var(--bg-alt); padding: 1rem; overflow-x: auto; border-radius: 6px; }
 article code { font-size: 0.9em; }

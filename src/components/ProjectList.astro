@@ -10,7 +10,7 @@ const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
 ---
 
-<ul class="projects">
+<ul class="list">
   {projects.map((p) => (
     <li>
       <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>

@@ -22,6 +22,15 @@ The write-up.
 
 The file name is the URL: `route-optimizer.md` serves at `/projects/route-optimizer/`.
 
+## Games
+
+- Pages: `src/pages/games/`
+- Logic: `src/games/<game>/`. `core/` is shared; one folder per mode.
+
+## Plans
+
+`docs/`. Index: `docs/README.md`.
+
 ## Run locally
 
 Needs Node 22 or newer (`.nvmrc` says 26).
