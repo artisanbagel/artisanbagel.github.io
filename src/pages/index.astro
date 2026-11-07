@@ -1,18 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import ProjectList from '../components/ProjectList.astro';
-
-const projects = (await getCollection('projects', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
 ---
 
 <Base title="Daulet Tuleubayev">
   <h1>Daulet Tuleubayev</h1>
   <p>INTRO TEXT</p>
-
-  <h2>Recent projects</h2>
-  <ProjectList projects={projects} />
-  <p><a href="/projects/">All projects</a></p>
 </Base>
