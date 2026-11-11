@@ -4,6 +4,7 @@
 - Plans live in `docs/`, one file per project track. Index: `docs/README.md`.
 - Track IDs exist only in `docs/`. Never use them in code, comments or file names.
 - Comments: short, only where useful.
+- Styles follow `docs/style.md`. Values come from `src/styles/tokens.css` only.
 
 # Layout
 
@@ -11,8 +12,11 @@
 - `src/layouts/` — page frames.
 - `src/components/` — shared components.
 - `src/content/projects/` — one Markdown file per project.
-- `src/games/<game>/` — game logic. `core/` is shared by all modes; one folder per mode.
-- `src/styles/global.css` — all styles. Colors are Solarized variables.
+- `src/games/<game>/` — game logic. `core/` is shared by all modes; one folder per mode; `title/` for the title screen.
+- `src/styles/tokens.css` — every style value (colors, type, spacing, radius, widths).
+- `src/styles/global.css` — all component styles. Uses tokens only.
+- `src/pages/style.astro` — style reference page, `/style/`. Not in the nav.
+- `astro.config.mjs` — fonts.
 - `public/games/<game>/` — game data files (word lists, root data).
 - `scripts/` — data build scripts. Run through `npm run`.
 

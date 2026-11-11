@@ -1,4 +1,4 @@
-import type { Board } from '../core/types';
+import type { Board } from './types';
 
 // Text format, one line per entry:
 //   POOL: AEQX

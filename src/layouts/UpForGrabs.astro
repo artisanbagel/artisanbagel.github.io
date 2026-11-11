@@ -2,24 +2,18 @@
 import Base from './Base.astro';
 
 interface Props {
-  title: string;
+  title?: string; // page name; none on the title screen
 }
 
 const { title } = Astro.props;
-const path = Astro.url.pathname;
-const modes = [
-  { href: '/games/up-for-grabs/helper/', label: 'Helper' },
-  { href: '/games/up-for-grabs/multiplayer/', label: 'Multiplayer' },
-  { href: '/games/up-for-grabs/daily/', label: 'Daily' },
-];
 ---
 
-<Base title={`${title} · Up For Grabs · Daulet Tuleubayev`}>
-  <nav class="subnav">
-    <a href="/games/up-for-grabs/" aria-current={path === '/games/up-for-grabs/' ? 'page' : undefined}>Up For Grabs</a>
-    {modes.map((m) => (
-      <a href={m.href} aria-current={path.startsWith(m.href) ? 'page' : undefined}>{m.label}</a>
-    ))}
-  </nav>
+<Base title={[title, 'Up For Grabs', 'Daulet Tuleubayev'].filter(Boolean).join(' · ')} wide>
+  {title && (
+    <nav class="subnav">
+      <a href="/games/up-for-grabs/">Up For Grabs</a>
+      <a href={Astro.url.pathname} aria-current="page">{title}</a>
+    </nav>
+  )}
   <slot />
 </Base>

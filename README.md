@@ -28,6 +28,12 @@ The file name is the URL: `route-optimizer.md` serves at `/projects/route-optimi
 - Logic: `src/games/<game>/`. `core/` is shared; one folder per mode.
 - Data: `public/games/<game>/`. Up For Grabs: `npm run build:scowl` rebuilds the SCOWL word list, `npm run build:roots` the root data.
 
+## Style
+
+- Values: `src/styles/tokens.css`. Fonts: `astro.config.mjs`.
+- Rules: `docs/style.md`.
+- Reference page: `/style/`.
+
 ## Plans
 
 `docs/`. Index: `docs/README.md`.

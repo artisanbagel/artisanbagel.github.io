@@ -18,12 +18,12 @@ Input a board position. Show whether any words can still be made, and which.
 - Not allowed: the new word keeps the root of a word it uses (plurals, prefixes, suffixes).
 
 ## Files
-- `src/pages/games/up-for-grabs/helper.astro` — page
-- `src/games/up-for-grabs/helper/solver.ts` — solver (stub)
-- `src/games/up-for-grabs/helper/format.ts` — board text format
-- `src/games/up-for-grabs/helper/random.ts` — random end position
-- `src/games/up-for-grabs/helper/view.ts` — board view
-- `src/games/up-for-grabs/helper/index.ts` — page wiring
+- Part of the Local page: Edit board + Check. Page and board view: [UL](UL-ufg-local.md).
+- `src/games/up-for-grabs/core/solver.ts` — solver; checks a grab
+- `src/games/up-for-grabs/core/format.ts` — board text format
+- `src/games/up-for-grabs/core/letters.ts` — letter counts
+- `src/games/up-for-grabs/local/random.ts` — random end position
+- `src/games/up-for-grabs/local/photo.ts` — photo reader (stub)
 - `src/games/up-for-grabs/core/` (shared) — types, rules, tile set, word lists, root data loader
 - `public/games/up-for-grabs/words/` — bundled word lists. `scowl.txt` built by `scripts/build-scowl.mjs` (`npm run build:scowl`)
 - `public/games/up-for-grabs/roots.txt` — root data, built by `scripts/build-roots.mjs` (`npm run build:roots`)
@@ -38,15 +38,17 @@ Input a board position. Show whether any words can still be made, and which.
 - Combining with no pool letters: not allowed.
 - Word lists: selectable. Own `.txt` file loads in the browser only, never uploaded. Bundled:
   - ENABLE (word game): public domain, 172,823 words.
-  - SCOWL (dictionary): size 70 US speller list, release 2026.02.25, 126,764 words. MIT-like license; notice kept in the file. Credit shown on the helper page.
+  - SCOWL (dictionary): size 70 US speller list, release 2026.02.25, 126,764 words. MIT-like license; notice kept in the file. Credit shown on the Local page.
   - Overlap: 113,291 in both. ENABLE only: 59,532 (rare word-game words: SCOWDER, PRILLING). SCOWL only: 13,473 (newer words: DAYCARE, PHISHING, UPSKILLING).
   - Official Scrabble lists (NWL, Collins) and Merriam-Webster are copyrighted; not hostable.
 - Root rule: liberal. Block only pairs the root data lists. No affix guessing (MOTH → MOTHER, CORN → CORNER, LATE → RELATE).
 - Root data: MorphyNet English, trimmed to bundled word lists. Own-file words outside them have no root data.
+- Solver: per list word, per player: the player's words that fit inside it, every set of them, the rest from the pool. Up to 12 fitting words per player. 7–21 ms on ENABLE.
+- Photo input: Photo button shows the photo next to the text box. The reader fills the text box for correction. Reader not built.
 - Root reports: "Report" link per move opens a prefilled GitHub issue. Needs a GitHub account. Add confirmed pairs to `roots-extra.txt`.
 
 ## Root data
-- MorphyNet English (github.com/kbatsuren/MorphyNet, CC BY-SA 3.0). Credit shown on the helper page.
+- MorphyNet English (github.com/kbatsuren/MorphyNet, CC BY-SA 3.0). Credit shown on the Local page.
   - Base → derived/inflected pairs. Pairs only; not a word list.
   - Source: Wiktionary etymology templates (base + affix), inflection tables, headword lines. Plus pairs inferred from other languages (3% of English pairs).
   - Follow pairs one way (base → longer). Merging into families joins unrelated words.
@@ -69,6 +71,10 @@ Input a board position. Show whether any words can still be made, and which.
 - [x] Word list selection, own file
 - [x] Report link per move
 - [x] Root data file (MorphyNet) + extra pairs file
-- [ ] Solver
-- [ ] Random end position: reject boards with moves left (needs solver)
-- [ ] Board input from photo (CV)
+- [x] Solver
+- [x] Photo button, preview, correction in text box
+- [ ] Photo reader
+- [ ] Random end position: reject boards with moves left
+
+## Open questions
+- Photo reader: Claude vision with own API key, Claude vision through a proxy, in-browser OCR. UNDECIDED

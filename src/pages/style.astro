@@ -1,0 +1,167 @@
+---
+import Base from '../layouts/Base.astro';
+import { tilt } from '../games/up-for-grabs/core/pieces';
+
+// Not in the nav. Values are read from the CSS on load.
+const colors = ['--bg', '--bg-alt', '--fg', '--muted', '--rule', '--border', '--accent', '--mark', '--on-mark', '--error'];
+const palette = [
+  '--base03', '--base02', '--base01', '--base00', '--base0', '--base1', '--base2', '--base3',
+  '--yellow', '--orange', '--red', '--magenta', '--violet', '--blue', '--cyan', '--green',
+];
+const sizes = ['--text-xl', '--text-lg', '--text-base', '--text-sm'];
+const spaces = ['--space-1', '--space-2', '--space-3', '--space-4', '--space-5', '--space-6', '--space-7'];
+const other = [
+  '--font-sans', '--font-mono', '--leading', '--leading-tight', '--weight-bold', '--radius', '--max', '--max-wide',
+  '--motion', '--ease', '--ufg-tile', '--ufg-tile-lg',
+];
+const ufgColors = ['--ufg-table', '--ufg-face', '--ufg-ink', '--ufg-edge', '--ufg-back'];
+---
+
+<Base title="Style · Daulet Tuleubayev">
+  <h1>Style</h1>
+  <p class="muted">Values: <code>src/styles/tokens.css</code>. Rules: <code>docs/style.md</code>.</p>
+
+  <h2>Colors</h2>
+  <div class="style-swatches">
+    {colors.map((c) => (
+      <div class="style-swatch">
+        <span class="style-chip" style={`--swatch: var(${c})`}></span>
+        <code>{c}</code>
+        <span class="muted" data-token={c}></span>
+      </div>
+    ))}
+  </div>
+
+  <h2>Palette</h2>
+  <div class="style-swatches">
+    {palette.map((c) => (
+      <div class="style-swatch">
+        <span class="style-chip" style={`--swatch: var(${c})`}></span>
+        <code>{c}</code>
+        <span class="muted" data-token={c}></span>
+      </div>
+    ))}
+  </div>
+
+  <h2>Type</h2>
+  <div class="style-table">
+    {sizes.map((s) => (
+      <>
+        <code>{s}</code>
+        <span style={`font-size: var(${s})`}>Text</span>
+        <span class="muted" data-token={s}></span>
+      </>
+    ))}
+  </div>
+  <p>Body text. <a href="/style/">Link</a>. <strong>Bold</strong>. <em>Italic</em>. <code>MONO</code>.</p>
+
+  <h2>Spacing</h2>
+  <div class="style-table">
+    {spaces.map((s) => (
+      <>
+        <code>{s}</code>
+        <span class="style-bar" style={`--bar: var(${s})`}></span>
+        <span class="muted" data-token={s}></span>
+      </>
+    ))}
+  </div>
+
+  <h2>Other</h2>
+  <div class="style-table">
+    {other.map((s) => (
+      <>
+        <code>{s}</code>
+        <span class="muted" data-token={s}></span>
+        <span></span>
+      </>
+    ))}
+  </div>
+
+  <h2>Controls</h2>
+  <div class="row">
+    <button type="button">Button</button>
+    <button type="button" disabled>Disabled</button>
+    <label class="button file">
+      File
+      <input id="style-file" type="file" />
+    </label>
+    <label>
+      Select
+      <select id="style-select"><option>Option</option></select>
+    </label>
+  </div>
+  <textarea id="style-textarea" rows="2" aria-label="Textarea">Textarea</textarea>
+
+  <h2>Text</h2>
+  <div class="label">Label</div>
+  <p class="muted">Muted</p>
+  <p class="error">Error</p>
+  <p class="links"><a href="/style/">Link</a><a href="/style/">Link</a></p>
+  <nav class="subnav">
+    <a href="/style/" aria-current="page">Current</a>
+    <a href="/style/">Link</a>
+    <a href="/style/">Link</a>
+  </nav>
+  <article>
+    <pre><code>CODE BLOCK</code></pre>
+  </article>
+
+  <h2>List</h2>
+  <ul class="list">
+    <li>
+      <time>Oct 2026</time>
+      <a class="title" href="/style/">Title</a>
+      <p class="muted">Summary</p>
+    </li>
+  </ul>
+
+  <h2>Up For Grabs</h2>
+  <div class="style-swatches">
+    {ufgColors.map((c) => (
+      <div class="style-swatch">
+        <span class="style-chip" style={`--swatch: var(${c})`}></span>
+        <code>{c}</code>
+        <span class="muted" data-token={c}></span>
+      </div>
+    ))}
+  </div>
+  <div class="ufg-table">
+    <div class="ufg-center">
+      <span class="ufg-bag"><span class="ufg-tile back">74</span></span>
+      <div class="ufg-pool ufg-loose">
+        {[...'AELOQSTX'].map((ch, i) => (
+          <span class:list={['ufg-tile', { marked: i === 6 }]} style={`--tilt: ${tilt(i + 1).toFixed(1)}deg`}>{ch}</span>
+        ))}
+      </div>
+    </div>
+    <div class="ufg-seats">
+      <section class="ufg-seat picked">
+        <div class="ufg-seat-head"><b>P1</b>10 letters · 2 words</div>
+        <div class="ufg-word">{[...'CRANE'].map((ch) => <span class="ufg-tile marked">{ch}</span>)}</div>
+        <div class="ufg-word">{[...'HOUSE'].map((ch) => <span class="ufg-tile">{ch}</span>)}</div>
+      </section>
+      <section class="ufg-seat">
+        <div class="ufg-seat-head"><b>P2</b>10 letters · 2 words</div>
+        <div class="ufg-word">{[...'STRIPE'].map((ch) => <span class="ufg-tile">{ch}</span>)}</div>
+        <div class="ufg-word invalid" title="Not in word list">{[...'XQZT'].map((ch) => <span class="ufg-tile">{ch}</span>)}</div>
+      </section>
+    </div>
+  </div>
+  <div class="label">Player chips</div>
+  <div class="ufg-chips">
+    <button type="button" aria-pressed="true"><kbd>1</kbd> P1</button>
+    <button type="button" aria-pressed="false"><kbd>2</kbd> P2</button>
+  </div>
+  <div class="label">Moves</div>
+  <ul class="ufg-moves">
+    <li><button type="button" aria-pressed="true">CRANE (P1) + T (Pool) → CANTER</button><a href="/style/">Report</a></li>
+    <li><button type="button" aria-pressed="false">STRIPE (P2) + S (Pool) → PERSIST</button><a href="/style/">Report</a></li>
+  </ul>
+</Base>
+
+<script>
+  const css = getComputedStyle(document.documentElement);
+  for (const el of document.querySelectorAll<HTMLElement>('[data-token]')) {
+    el.textContent = css.getPropertyValue(el.dataset.token ?? '').trim();
+  }
+</script>

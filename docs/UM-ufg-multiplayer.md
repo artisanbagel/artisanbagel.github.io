@@ -7,7 +7,7 @@ Owner: UNASSIGNED
 Play Up For Grabs with other people online.
 
 ## Files
-- `src/pages/games/up-for-grabs/multiplayer.astro`
+- `src/pages/games/up-for-grabs/lobby.astro` — Lobby (menu: Play → Lobby)
 - `src/games/up-for-grabs/multiplayer/`
 - `src/games/up-for-grabs/core/` (shared)
 

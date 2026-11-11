@@ -1,21 +1,35 @@
 ---
 import UpForGrabs from '../../../layouts/UpForGrabs.astro';
+import { tilt } from '../../../games/up-for-grabs/core/pieces';
+
+const rows = ['UP', 'FOR', 'GRABS'];
+let seed = 0;
 ---
 
-<UpForGrabs title="Overview">
-  <h1>Up For Grabs</h1>
-  <ul class="list">
-    <li>
-      <a class="title" href="/games/up-for-grabs/helper/">Helper</a>
-      <p class="muted">Find words that can still be made from a board position.</p>
-    </li>
-    <li>
-      <a class="title" href="/games/up-for-grabs/multiplayer/">Multiplayer</a>
-      <p class="muted">Play with others online.</p>
-    </li>
-    <li>
-      <a class="title" href="/games/up-for-grabs/daily/">Daily</a>
-      <p class="muted">One puzzle per day.</p>
-    </li>
-  </ul>
+<UpForGrabs>
+  <div id="ufg-stage" class="ufg-stage">
+    <div id="ufg-float" class="ufg-float" aria-hidden="true"></div>
+    <div class="ufg-menu">
+      <h1 class="ufg-title ufg-loose" aria-label="Up For Grabs">
+        {rows.map((row) => (
+          <span class="ufg-title-row" aria-hidden="true">
+            {[...row].map((ch) => <span class="ufg-tile" style={`--tilt: ${tilt(++seed).toFixed(1)}deg`}>{ch}</span>)}
+          </span>
+        ))}
+      </h1>
+      <div id="ufg-main" class="ufg-choices">
+        <button id="ufg-play" type="button" class="ufg-choice">Play</button>
+        <a class="ufg-choice" href="/games/up-for-grabs/daily/">Daily challenge</a>
+      </div>
+      <div id="ufg-play-menu" class="ufg-choices" hidden>
+        <a class="ufg-choice" href="/games/up-for-grabs/local/">Local</a>
+        <a class="ufg-choice" href="/games/up-for-grabs/lobby/">Lobby <span class="muted">Not built</span></a>
+        <button id="ufg-back" type="button" class="ufg-choice">Back</button>
+      </div>
+    </div>
+  </div>
 </UpForGrabs>
+
+<script>
+  import '../../../games/up-for-grabs/title/index.ts';
+</script>

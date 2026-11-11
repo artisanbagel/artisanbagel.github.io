@@ -1,0 +1,122 @@
+---
+import UpForGrabs from '../../../layouts/UpForGrabs.astro';
+import { WORD_LISTS } from '../../../games/up-for-grabs/core/words';
+
+const playerCounts = [2, 3, 4, 5, 6];
+const seats = [1, 2, 3, 4, 5, 6];
+---
+
+<UpForGrabs title="Local">
+  <h1>Local</h1>
+  <div class="row">
+    <label>
+      Word list
+      <select id="ufg-list">
+        {WORD_LISTS.map((l) => <option value={l.id}>{l.name}</option>)}
+      </select>
+    </label>
+    <label class="button file">
+      Load file
+      <input id="ufg-list-file" type="file" accept=".txt,text/plain" />
+    </label>
+    <span id="ufg-list-info" class="muted">Loading</span>
+  </div>
+
+  <section id="ufg-setup">
+    <h2>Players</h2>
+    <div class="row">
+      <label>
+        Players
+        <select id="ufg-count">
+          {playerCounts.map((n) => <option>{n}</option>)}
+        </select>
+      </label>
+    </div>
+    <div class="row">
+      {seats.map((n) => (
+        <input
+          id={`ufg-name-${n}`}
+          class="ufg-name"
+          type="text"
+          maxlength="16"
+          placeholder={`P${n}`}
+          aria-label={`Player ${n} name`}
+          hidden={n > 2}
+        />
+      ))}
+    </div>
+    <div class="row">
+      <button id="ufg-start" type="button">Start game</button>
+      <button id="ufg-setup-board" type="button">Set up position</button>
+    </div>
+  </section>
+
+  <section id="ufg-game" hidden>
+    <div class="row">
+      <button id="ufg-flip" type="button">Flip</button>
+      <button id="ufg-undo" type="button">Undo</button>
+      <button id="ufg-check" type="button">Check</button>
+      <button id="ufg-edit" type="button" aria-pressed="false">Edit board</button>
+      <button id="ufg-new" type="button">New game</button>
+      <span id="ufg-status" class="muted"></span>
+    </div>
+
+    <form id="ufg-grab" class="row ufg-grab" autocomplete="off">
+      <div id="ufg-chips" class="ufg-chips" role="group" aria-label="Player"></div>
+      <input id="ufg-word" type="text" spellcheck="false" autocapitalize="characters" aria-label="Word" placeholder="WORD" />
+      <button type="submit">Grab</button>
+      <span class="muted ufg-keys"><kbd>Space</kbd> flip · <kbd>1</kbd>–<kbd>6</kbd> player · <kbd>Enter</kbd> grab</span>
+    </form>
+    <div id="ufg-grab-msg" class="row" role="status"></div>
+
+    <div id="ufg-editor" hidden>
+      <div class="row">
+        <label class="button file">
+          Photo
+          <input id="ufg-photo" type="file" accept="image/*" capture="environment" />
+        </label>
+        <button id="ufg-random" type="button">Random end position</button>
+        <span id="ufg-photo-info" class="muted"></span>
+      </div>
+      <div class="ufg-edit">
+        <textarea
+          id="ufg-input"
+          class="ufg-input"
+          rows="8"
+          spellcheck="false"
+          autocomplete="off"
+          aria-label="Board"
+          placeholder={'POOL: AEQX\nP1: CRANE HOUSE\nP2: STRIPE'}
+        ></textarea>
+        <img id="ufg-photo-img" class="ufg-photo" alt="Board photo" hidden />
+      </div>
+      <p id="ufg-error" class="error" role="alert"></p>
+      <p class="muted ufg-keys">Click a pool tile or a word: back to the bag.</p>
+    </div>
+
+    <div id="ufg-table" class="ufg-table">
+      <div class="ufg-center">
+        <button id="ufg-bag" type="button" class="ufg-bag" aria-label="Flip">
+          <span id="ufg-bag-count" class="ufg-tile back">98</span>
+        </button>
+        <div id="ufg-pool" class="ufg-pool ufg-loose"></div>
+      </div>
+      <div id="ufg-seats" class="ufg-seats"></div>
+    </div>
+
+    <section id="ufg-moves-panel" hidden>
+      <h2>Moves</h2>
+      <p id="ufg-result" class="muted"></p>
+      <ul id="ufg-moves" class="ufg-moves"></ul>
+    </section>
+  </section>
+
+  <p class="muted ufg-credit">
+    Word lists: ENABLE, public domain; <a href="https://github.com/en-wl/wordlist">SCOWL</a>, © Kevin Atkinson.
+    Root data: <a href="https://github.com/kbatsuren/MorphyNet">MorphyNet</a>, CC BY-SA 3.0.
+  </p>
+</UpForGrabs>
+
+<script>
+  import '../../../games/up-for-grabs/local/index.ts';
+</script>
