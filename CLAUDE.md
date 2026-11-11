@@ -13,6 +13,8 @@
 - `src/content/projects/` — one Markdown file per project.
 - `src/games/<game>/` — game logic. `core/` is shared by all modes; one folder per mode.
 - `src/styles/global.css` — all styles. Colors are Solarized variables.
+- `public/games/<game>/` — game data files (word lists, root data).
+- `scripts/` — data build scripts. Run through `npm run`.
 
 # Git
 

@@ -106,3 +106,76 @@ footer {
 article img { max-width: 100%; height: auto; }
 article pre { background: var(--bg-alt); padding: 1rem; overflow-x: auto; border-radius: 6px; }
 article code { font-size: 0.9em; }
+
+/* Form controls */
+button, select, textarea { font: inherit; color: inherit; }
+button, select, .button {
+  background: var(--bg-alt);
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+  padding: 0.2rem 0.75rem;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.5; cursor: default; }
+textarea {
+  display: block;
+  width: 100%;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+.error { color: var(--red); }
+.error:empty { display: none; }
+
+/* Up For Grabs */
+.ufg-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.ufg-row label { display: flex; gap: 0.5rem; align-items: center; }
+.ufg-file { position: relative; }
+.ufg-file input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.ufg-file:focus-within { outline: 2px solid var(--accent); }
+.ufg-input { font-family: ui-monospace, Consolas, monospace; font-size: 0.95rem; }
+.ufg-label { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.35rem; }
+.ufg-credit { margin-top: 2rem; font-size: 0.85rem; }
+
+.ufg-board { display: grid; gap: 1.5rem; }
+.ufg-players {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1.5rem;
+}
+
+.tiles { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 0.4rem; min-height: 1.6rem; }
+.tile {
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  background: var(--bg-alt);
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.tiles.invalid .tile { color: var(--red); }
+.tiles.from .tile, .tile.marked { background: var(--yellow); color: var(--base3); }
+
+.ufg-moves { list-style: none; padding: 0; margin: 0; }
+.ufg-moves li { display: flex; align-items: center; gap: 0.75rem; }
+.ufg-moves a { font-size: 0.85rem; }
+.ufg-moves button {
+  flex: 1;
+  text-align: left;
+  border: 0;
+  background: none;
+  padding: 0.25rem 0.5rem;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.95rem;
+}
+.ufg-moves button:hover { background: var(--bg-alt); }
+.ufg-moves button[aria-pressed="true"] { background: var(--yellow); color: var(--base3); }

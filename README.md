@@ -26,6 +26,7 @@ The file name is the URL: `route-optimizer.md` serves at `/projects/route-optimi
 
 - Pages: `src/pages/games/`
 - Logic: `src/games/<game>/`. `core/` is shared; one folder per mode.
+- Data: `public/games/<game>/`. Up For Grabs: `npm run build:scowl` rebuilds the SCOWL word list, `npm run build:roots` the root data.
 
 ## Plans
 
