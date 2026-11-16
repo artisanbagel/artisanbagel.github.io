@@ -1,12 +1,14 @@
 ---
+import { Font } from 'astro:assets';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
+  wide?: boolean;
 }
 
-const { title, description = 'SITE DESCRIPTION' } = Astro.props;
+const { title, description = 'SITE DESCRIPTION', wide = false } = Astro.props;
 const path = Astro.url.pathname;
 const current = (href: string) =>
   (href === '/' ? path === '/' : path.startsWith(href)) ? 'page' : undefined;
@@ -21,10 +23,12 @@ const current = (href: string) =>
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <Font cssVariable="--font-sans" preload={[{ weight: 400, style: 'normal' }]} />
+    <Font cssVariable="--font-mono" />
     <title>{title}</title>
   </head>
   <body>
-    <div class="wrap">
+    <div class:list={['wrap', { wide }]}>
       <header>
         <nav>
           <a class="home" href="/">Daulet Tuleubayev</a>

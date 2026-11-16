@@ -1,0 +1,94 @@
+/* Every style value. Components in global.css use these names only.
+   Fonts (--font-sans, --font-mono): astro.config.mjs, `fonts`. */
+
+:root {
+  /* Solarized palette. Used only in this file. */
+  --base03: #002b36;
+  --base02: #073642;
+  --base01: #586e75;
+  --base00: #657b83;
+  --base0: #839496;
+  --base1: #93a1a1;
+  --base2: #eee8d5;
+  --base3: #fdf6e3;
+  --yellow: #b58900;
+  --orange: #cb4b16;
+  --red: #dc322f;
+  --magenta: #d33682;
+  --violet: #6c71c4;
+  --blue: #268bd2;
+  --cyan: #2aa198;
+  --green: #859900;
+
+  /* Colors */
+  --bg: var(--base3);        /* page */
+  --bg-alt: var(--base2);    /* controls, tiles, code */
+  --fg: var(--base01);       /* text */
+  --muted: var(--base00);    /* secondary text */
+  --rule: var(--base2);      /* dividers */
+  --border: var(--base00);   /* control borders */
+  --accent: var(--blue);     /* links, focus */
+  --mark: var(--yellow);     /* highlight */
+  --on-mark: var(--base03);  /* text on highlight */
+  --error: var(--red);       /* errors, invalid input */
+
+  /* Type */
+  --text-sm: 0.9rem;         /* labels, dates, footer, mono */
+  --text-base: 1.0625rem;    /* body, 17px */
+  --text-lg: 1.25rem;        /* h2 */
+  --text-xl: 1.75rem;        /* h1 */
+  --leading: 1.6;
+  --leading-tight: 1.2;      /* headings */
+  --weight-bold: 600;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 4rem;
+
+  /* Shape */
+  --radius: 4px;
+  --focus: 2px solid var(--accent);
+
+  /* Layout */
+  --max: 42rem;              /* text pages */
+  --max-wide: 64rem;         /* game pages */
+
+  /* Motion */
+  --motion: 400ms;           /* moves, flips */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Up For Grabs */
+  --ufg-tile: 2rem;          /* letter tile */
+  --ufg-tile-lg: 3.25rem;    /* title tiles */
+  --ufg-table: var(--base2); /* board surface */
+  --ufg-face: var(--base3);  /* tile face */
+  --ufg-ink: var(--base02);  /* tile letter */
+  --ufg-edge: var(--base1);  /* tile side */
+  --ufg-back: var(--cyan);   /* face-down tile */
+  --ufg-shadow: 0 2px 0 var(--ufg-edge), 0 3px 6px color-mix(in srgb, var(--base03) 25%, transparent);
+}
+
+/* Dark: follows the OS */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--base03);
+    --bg-alt: var(--base02);
+    --fg: var(--base1);
+    --muted: var(--base0);
+    --rule: var(--base02);
+    --border: var(--base0);
+
+    --ufg-table: var(--base02);
+    --ufg-face: var(--base2);
+    --ufg-edge: var(--base00);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion: 0ms; }
+}
